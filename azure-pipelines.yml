@@ -1,0 +1,14 @@
+variables:
+- group: Semgrep_Mayowa
+
+jobs:
+- job: Semgrep            
+  steps:
+    - script: |
+        python -m pip install --upgrade pip
+        pip install semgrep
+        echo "Semgrep full scan"
+        semgrep login
+        semgrep ci 
+      env:
+        SEMGREP_APP_TOKEN: $(SEMGREP_APP_TOKEN)
